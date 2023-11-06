@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchCourses } from "../redux-toolkit/courseSlice";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
 export const Home = () => {
@@ -7,6 +8,7 @@ export const Home = () => {
     id: string | number;
     name: string;
     instructor: string;
+    description: string;
   }> = useSelector((state: RootState) => state.course.courses);
   const searchInput = useSelector(
     (state: RootState) => state.search.searchInput
@@ -34,15 +36,30 @@ export const Home = () => {
     })();
   }, []);
   return (
-    <main className=" py-4 text-left">
+    <div>
       <h1 className=" text-4xl font-semibold">Courses</h1>
-      {filteredList?.length > 0 &&
-        filteredList.map((course) => (
-          <div key={course?.id}>
-            <p className=" text-red-400">{course?.name}</p>
-            <p>{course.instructor}</p>
+      <div className="course__container py-4">
+        {filteredList?.length > 0 ? (
+          filteredList.map((course) => (
+            <div className="mb-4 p-4 bg-zinc-900 rounded-lg" key={course?.id}>
+              <h3 className=" text-red-400 text-2xl font-medium">
+                {course?.name}
+              </h3>
+              <p className=" text-xl">{course.instructor}</p>
+              <p>{course.description}</p>
+              <Link state={course} to={`/details/${course.id}`}>
+                <button className=" px-4 py-2 mt-2 bg-white text-gray-950 rounded-full">
+                  View More
+                </button>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <div className="h-[60vh] flex justify-center items-center">
+            <h1 className="text-center">No course or intructor found</h1>
           </div>
-        ))}
-    </main>
+        )}
+      </div>
+    </div>
   );
 };

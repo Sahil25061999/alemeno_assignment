@@ -1,6 +1,6 @@
 const courseModels = [
   {
-    id: 1, // Unique identifier for the course
+    id: "1",
     name: "Introduction to React Native",
     instructor: "John Doe", // Name of the course instructor
     description:
@@ -26,19 +26,19 @@ const courseModels = [
     ],
     students: [
       {
-        id: 101,
+        id: " 101",
         name: "Alice Johnson",
         email: "alice@example.com",
       },
       {
-        id: 102,
+        id: " 102",
         name: "Bob Smith",
         email: "bob@example.com",
       },
     ],
   },
   {
-    id: 2,
+    id: "2",
     name: "Machine Learning Foundations",
     instructor: "Alex Johnson",
     description:
@@ -63,19 +63,19 @@ const courseModels = [
     ],
     students: [
       {
-        id: 103,
+        id: " 103",
         name: "Emily Davis",
         email: "emily@example.com",
       },
       {
-        id: 104,
+        id: " 104",
         name: "James Wilson",
         email: "james@example.com",
       },
     ],
   },
   {
-    id: 3,
+    id: " 3",
     name: "Full-Stack Web Development",
     instructor: "Sophia Brown",
     description:
@@ -101,19 +101,19 @@ const courseModels = [
     ],
     students: [
       {
-        id: 101,
+        id: " 101",
         name: "Alice Johnson",
         email: "alice@example.com",
       },
       {
-        id: 105,
+        id: " 105",
         name: "Liam Smith",
         email: "liam@example.com",
       },
     ],
   },
   {
-    id: 4,
+    id: " 4",
     name: "Digital Marketing Essentials",
     instructor: "Ella Lee",
     description:
@@ -138,24 +138,24 @@ const courseModels = [
     ],
     students: [
       {
-        id: 101,
+        id: " 101",
         name: "Alice Johnson",
         email: "alice@example.com",
       },
       {
-        id: 104,
+        id: " 104",
         name: "James Wilson",
         email: "james@example.com",
       },
       {
-        id: 103,
+        id: " 103",
         name: "Emily Davis",
         email: "emily@example.com",
       },
     ],
   },
   {
-    id: 5,
+    id: " 5",
     name: "Mobile App Development with Flutter",
     instructor: "William Smith",
     description:
@@ -181,7 +181,7 @@ const courseModels = [
     students: [],
   },
   {
-    id: 6,
+    id: " 6",
     name: "Data Analysis with Python",
     instructor: "Charlotte Johnson",
     description:
@@ -207,7 +207,7 @@ const courseModels = [
     students: [],
   },
   {
-    id: 7,
+    id: " 7",
     name: "Introduction to Python Programming",
     instructor: "Daniel Wilson",
     description: "Get started with Python programming from scratch.",
@@ -220,19 +220,19 @@ const courseModels = [
     syllabus: [],
     students: [
       {
-        id: 701,
+        id: " 701",
         name: "Olivia Smith",
         email: "olivia@example.com",
       },
       {
-        id: 702,
+        id: " 702",
         name: "Mason Davis",
         email: "mason@example.com",
       },
     ],
   },
   {
-    id: 8,
+    id: " 8",
     name: "Artificial Intelligence in Healthcare",
     instructor: "Aiden Johnson",
     description:
@@ -258,7 +258,7 @@ const courseModels = [
     students: [],
   },
   {
-    id: 9,
+    id: " 9",
     name: "Digital Art and Graphic Design",
     instructor: "Ava Johnson",
     description:
@@ -284,7 +284,7 @@ const courseModels = [
     students: [],
   },
   {
-    id: 10,
+    id: " 10",
     name: "Cybersecurity Fundamentals",
     instructor: "Jackson Johnson",
     description:

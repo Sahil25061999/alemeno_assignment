@@ -4,7 +4,9 @@ export const Layout = () => {
   return (
     <div>
       <Navbar />
-      <Outlet />
+      <main className=" py-4 text-left">
+        <Outlet />
+      </main>
     </div>
   );
 };

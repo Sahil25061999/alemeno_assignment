@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux-toolkit/store";
 import { setSearchInput } from "../../redux-toolkit/searchSlice";
@@ -13,8 +14,9 @@ export const Navbar = () => {
   return (
     <nav className="flex flex-row justify-between items-center">
       <div className=" flex flex-row">
-        {/* <img src="" alt="logo" className="logo" /> */}
-        <p>Course4U</p>
+        <Link to="/">
+          <p>Course4U</p>
+        </Link>
       </div>
       <div className="search__container  border rounded-full p-2">
         <input
