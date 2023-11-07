@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-
-interface Syllabus {
-  week: number;
-  topic: string;
-  content: string;
-}
+import { Syllabus } from "../schemes/shared";
 
 export const CourseDetails = () => {
   const [display, setDisplay] = useState(false);
@@ -32,7 +27,9 @@ export const CourseDetails = () => {
       </p>
       <p className="text-slate-400">
         Pre-requisite:{" "}
-        <span className="text-white">{course.prerequisites}</span>
+        {course.prerequisites.map((prerequisite: string) => (
+          <span className="text-white">{prerequisite}, </span>
+        ))}
       </p>
       <div className=" my-4">
         <h4 className="text-lg mb-2">Syllabus</h4>

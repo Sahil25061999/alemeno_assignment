@@ -71,6 +71,36 @@ const studentModels = [
         completed: false,
         enrolledOn: "04/08/2023",
         duration: "12 weeks",
+        syllabus: [
+          {
+            week: 1,
+            topic: "Introduction to Digital Marketing",
+            content: "Understanding digital marketing channels and strategies.",
+            completed: false,
+          },
+          {
+            week: 2,
+            topic: "SEO and Content Marketing",
+            content:
+              "Optimizing websites for search engines and content creation.",
+            completed: false,
+          },
+          {
+            week: 3,
+            topic: "SEO and Content Marketing",
+            content:
+              "Optimizing websites for search engines and content creation.",
+            completed: false,
+          },
+          {
+            week: 4,
+            topic: "SEO and Content Marketing",
+            content:
+              "Optimizing websites for search engines and content creation.",
+            completed: false,
+          },
+         
+        ],
       },
     ],
   },
