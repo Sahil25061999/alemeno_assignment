@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
 import { useEffect } from "react";
-import { fetchStudent, markCourse } from "../redux-toolkit/studentSlice";
+import { getStudentById, markCourse } from "../redux-toolkit/studentSlice";
 import { EmptyList } from "../components/index.component";
-import { CourseApplied, Student } from "../schemes/shared";
+import { CourseApplied } from "../schemes/shared";
 
 export const StudentDashboard = () => {
   const { id = "" } = useParams();
-  const studentDetails: Student | null = useSelector(
-    (state: RootState) => state.student.student
+  const { student: studentDetails, students } = useSelector(
+    (state: RootState) => state.student
   );
   const status = useSelector((state: RootState) => state.student.status);
   const dispatch = useDispatch<AppDispatch>();
@@ -24,14 +24,9 @@ export const StudentDashboard = () => {
     }
   };
   useEffect(() => {
-    (async () => {
-      try {
-        await dispatch(fetchStudent(id));
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [id]);
+    console.log(id);
+    dispatch(getStudentById(id));
+  }, [id, dispatch, students]);
   return (
     <div>
       <h1 className=" text-4xl font-semibold">Enrolled Courses</h1>
@@ -45,7 +40,11 @@ export const StudentDashboard = () => {
                 key={course?.id}
               >
                 <div className=" w-1/4 max-md:w-full max-md:max-h-[200px] overflow-hidden ">
-                  <img className=" h-full w-full object-contain " src={course?.thumbnail} alt="course-image" />
+                  <img
+                    className=" h-full w-full object-contain "
+                    src={course?.thumbnail}
+                    alt="course-image"
+                  />
                 </div>
                 <div className="w-full">
                   <div className="flex flex-row justify-between items-center">

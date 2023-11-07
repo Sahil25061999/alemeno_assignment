@@ -1,24 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { formattedResp } from "../utils/formatRes";
+import {  getCourseEndDate, formattedResp } from "../utils/formatRes";
 import { CourseApplied, Status, Student } from "../schemes/shared";
 
-
 interface InitialState {
-  student: Student | null;
+  students: Array<Student>;
+  student: Student | null ;
   status: Status;
 }
 
 const initialState: InitialState = {
+  students: [],
   student: null,
-  status:"idle"
+  status: "idle",
 };
 
-export const fetchStudent = createAsyncThunk(
-  "student/fetchStudent",
-  async (id: string) => {
+export const fetchStudents = createAsyncThunk(
+  "student/fetchStudents",
+  async () => {
     try {
-      const res = await axios.get(`/api/v1/students/${id}`);
+      const res = await axios.get(`/api/v1/students/`);
       return res?.data;
     } catch (e) {
       return e;
@@ -52,17 +53,25 @@ export const markCourse = createAsyncThunk(
 const studentSlice = createSlice({
   name: "student",
   initialState,
-  reducers: {},
+  reducers: {
+    getStudentById: (state, action) => {
+      console.log(state.students,action.payload)
+      state.student =  state.students?.find(
+        (student) => student?.id === action.payload
+      ) ?? null;
+      
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchStudent.fulfilled, (state, action) => {
+      .addCase(fetchStudents.fulfilled, (state, action) => {
         state.status = "idle";
-        state.student = formattedResp(action.payload.student);
+        state.students =  getCourseEndDate(action.payload.students) ;
       })
-      .addCase(fetchStudent.pending, (state) => {
+      .addCase(fetchStudents.pending, (state) => {
         state.status = "pending";
       })
-      .addCase(fetchStudent.rejected, (state) => {
+      .addCase(fetchStudents.rejected, (state) => {
         state.status = "rejected";
       })
       .addCase(markCourse.fulfilled, (state, action) => {
@@ -71,4 +80,5 @@ const studentSlice = createSlice({
   },
 });
 
+export const {getStudentById} = studentSlice.actions
 export default studentSlice.reducer;
