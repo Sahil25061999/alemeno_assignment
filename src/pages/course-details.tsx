@@ -1,15 +1,34 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Syllabus } from "../schemes/shared";
+import { Syllabus as SyllabusScheme } from "../lib/types";
 
 export const CourseDetails = () => {
   const [week, setWeek] = useState(0);
   const { state: course } = useLocation();
   const handleViewMore = (week: number) => {
-    setWeek((prev)=> prev === week ? 0 : week);
-    
+    setWeek((prev) => (prev === week ? 0 : week));
   };
-  console.log(week)
+
+  const Syllabus = ({ syllabus }: { syllabus: Array<SyllabusScheme> }) => {
+    return syllabus.map((item: SyllabusScheme) => (
+      <div key={item.week} className=" p-4 bg-black mb-1 rounded-lg ">
+        <p>Week {item.week}</p>
+        <h2 className="text-2xl">{item.topic}</h2>
+        <button
+          onClick={() => handleViewMore(item.week)}
+          className=" text-blue-700 underline"
+        >
+          View More
+        </button>
+        {week === item.week ? (
+          <div className="transition-all duration-500">
+            <p>{item.content}</p>
+          </div>
+        ) : null}
+      </div>
+    ));
+  };
+
   return (
     <div className="mb-4 p-4 bg-zinc-900 rounded-3xl" key={course?.id}>
       <h3 className=" text-red-400 text-4xl font-medium">{course?.name}</h3>
@@ -35,31 +54,9 @@ export const CourseDetails = () => {
       </p>
       <div className=" my-4">
         <h4 className="text-lg mb-2">Syllabus</h4>
-        {course?.syllabus?.length > 0 &&
-          course.syllabus.map((item: Syllabus) => (
-            <div key={item.week} className=" p-4 bg-black mb-1 rounded-lg ">
-              <p>Week {item.week}</p>
-              <h2 className="text-2xl">{item.topic}</h2>
-              <button
-                onClick={() => handleViewMore(item.week)}
-                className=" text-blue-700 underline"
-              >
-                View More
-              </button>
-              {  week === item.week ? (
-                <div
-                className="transition-all duration-500"
-                // style={{
-                //   height: week === item.week ? "auto" : 0,
-                //   overflow:'hidden',
-                //   transition:week === item.week ? "all 300ms cubic-bezier(0.4, 0, 0.2, 1)":"all",
-                // }}
-                >
-                  <p>{item.content}</p>
-                </div>
-               ) : null}
-            </div>
-          ))}
+        {course?.syllabus?.length > 0 && (
+          <Syllabus syllabus={course?.syllabus} />
+        )}
       </div>
     </div>
   );

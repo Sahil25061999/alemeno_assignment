@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {  getCourseEndDate, formattedResp } from "../utils/formatRes";
-import { CourseApplied, Status, Student } from "../schemes/shared";
+import { getCourseEndDate } from "../lib/utils";
+import { CourseApplied, Status, Student } from "../lib/types";
 
 interface InitialState {
   students: Array<Student>;
-  student: Student | null ;
+  student: Student | null;
   status: Status;
 }
 
@@ -22,7 +22,7 @@ export const fetchStudents = createAsyncThunk(
       const res = await axios.get(`/api/v1/students/`);
       return res?.data;
     } catch (e) {
-      return e;
+      throw new Error("Error while fetching users");
     }
   }
 );
@@ -45,7 +45,7 @@ export const markCourse = createAsyncThunk(
       );
       return res.data;
     } catch (e) {
-      return e;
+      throw new Error("Error while fetching course")
     }
   }
 );
@@ -55,18 +55,18 @@ const studentSlice = createSlice({
   initialState,
   reducers: {
     getStudentById: (state, action) => {
-      console.log(state.students,action.payload)
-      state.student =  state.students?.find(
-        (student) => student?.id === action.payload
-      ) ?? null;
-      
+      console.log(state.students, action.payload);
+      state.student =
+        state.students?.find((student) => student?.id === action.payload) ??
+        null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchStudents.fulfilled, (state, action) => {
         state.status = "idle";
-        state.students =  getCourseEndDate(action.payload.students) ;
+        const students = action.payload.students.map((student:Student) => getCourseEndDate(student))
+        state.students = students;
       })
       .addCase(fetchStudents.pending, (state) => {
         state.status = "pending";
@@ -75,10 +75,10 @@ const studentSlice = createSlice({
         state.status = "rejected";
       })
       .addCase(markCourse.fulfilled, (state, action) => {
-        state.student = formattedResp(action.payload.student);
+        state.student = getCourseEndDate(action.payload.student);
       });
   },
 });
 
-export const {getStudentById} = studentSlice.actions
+export const { getStudentById } = studentSlice.actions;
 export default studentSlice.reducer;

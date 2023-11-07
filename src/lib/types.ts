@@ -1,5 +1,6 @@
 export type Status = "idle" | "pending" | "rejected";
 
+export type EnrollmentStatus = "open" | "closed" | "in progress";
 
 export interface Syllabus {
   week: number;
@@ -7,12 +8,13 @@ export interface Syllabus {
   content: string;
   completed: boolean;
 }
+
 export interface Course {
   id: string;
   name: string;
   instructor: string;
   description: string;
-  enrollmentStatus: "open" | "closed" | "in progress";
+  enrollmentStatus: EnrollmentStatus;
   thumbnail: string;
   duration: string;
   location: string;

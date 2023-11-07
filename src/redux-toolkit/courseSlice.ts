@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Course, Status } from "../schemes/shared";
+import { Course, Status } from "../lib/types";
 
 
 interface InitialState{

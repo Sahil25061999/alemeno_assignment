@@ -1,4 +1,4 @@
-import { Status } from "../../schemes/shared";
+import { Status } from "../lib/types";
 
 interface Params {
   status: Status;

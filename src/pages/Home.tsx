@@ -32,20 +32,21 @@ export const Home = () => {
       }
     })();
   }, []);
+  
   return (
     <div>
-      <h1 className=" text-4xl font-semibold">Courses</h1>
+      <h1 className="text-4xl font-semibold">Courses</h1>
       <div className="course__container py-4">
         {filteredList?.length > 0 ? (
           filteredList.map((course) => (
             <div className="mb-4 p-4 bg-zinc-900 rounded-3xl" key={course?.id}>
-              <h3 className=" text-red-400 text-2xl font-medium">
+              <h3 className="text-red-400 text-2xl font-medium">
                 {course?.name}
               </h3>
-              <p className=" text-xl">{course?.instructor}</p>
+              <p className="text-xl">{course?.instructor}</p>
               <p>{course?.description}</p>
               <Link state={course} to={`/details/${course?.id}`}>
-                <button className=" px-4 py-2 mt-2 bg-white text-gray-950 rounded-full">
+                <button className="px-4 py-2 mt-2 bg-white text-gray-950 rounded-full">
                   View More
                 </button>
               </Link>

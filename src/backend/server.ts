@@ -1,7 +1,7 @@
 import { createServer, Model } from "miragejs";
 import { courseModels } from "./models/course.constant";
 import { studentModels } from "./models/student.constant";
-import { CourseApplied, Syllabus } from "../schemes/shared";
+import { CourseApplied, Syllabus } from "../lib/types";
 
 function makeServer({ environment = "development" } = {}) {
   const server = createServer({

@@ -1,15 +1,16 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../redux-toolkit/store";
-import { setSearchInput } from "../../redux-toolkit/searchSlice";
-import { Student } from "../../schemes/shared";
-import { fetchStudents } from "../../redux-toolkit/studentSlice";
+import { AppDispatch, RootState } from "../redux-toolkit/store";
+import { setSearchInput } from "../redux-toolkit/searchSlice";
+import { Student } from "../lib/types";
+import { fetchStudents } from "../redux-toolkit/studentSlice";
+
 export const Navbar = () => {
   const searchInput = useSelector(
     (state: RootState) => state.search.searchInput
   );
-  const students = useSelector((state:RootState)=>state.student.students)
+  const students = useSelector((state: RootState) => state.student.students);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,15 +20,20 @@ export const Navbar = () => {
   const handleStudentSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     navigate(`/students/${e.target.value}`);
   };
+
+  const getStudents = async () => {
+    try {
+      await dispatch(fetchStudents()).unwrap();
+  
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        await dispatch(fetchStudents()).unwrap()
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    getStudents();
   }, []);
+
   return (
     <nav className="flex flex-row justify-between items-center gap-2 max-md:flex-col">
       <div className=" flex flex-row">
@@ -51,13 +57,18 @@ export const Navbar = () => {
           <option selected hidden disabled>
             Dashboard
           </option>
-          {students && students.map((student: Student) => {
-            return (
-              <option className=" text-slate-900" key={student.id} value={student.id}>
-                {student.name}
-              </option>
-            );
-          })}
+          {students &&
+            students.map((student: Student) => {
+              return (
+                <option
+                  className=" text-slate-900"
+                  key={student.id}
+                  value={student.id}
+                >
+                  {student.name}
+                </option>
+              );
+            })}
         </select>
       </div>
     </nav>
