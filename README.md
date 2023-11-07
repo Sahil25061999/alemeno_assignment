@@ -6,7 +6,7 @@ You can visit the site here: [https://course-list.netlify.app/](https://course-l
 
 ---
 ## Demo
-![site demo](/course_list/src/assets/site-demo.gif)
+![site demo](/course_list/public/site-demo.gif)
 ---
 In order to run the program,follow the following steps:
 * Clone the repository
