@@ -11,6 +11,8 @@ const studentModels = [
         description:
           "Learn the basics of React Native development and build your first mobile app.",
         completed: true,
+        thumbnail:
+          "https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg?size=626&ext=jpg&ga=GA1.1.686164011.1685965708&semt=ais",
         enrolledOn: "04/01/2023",
         duration: "8 weeks",
         syllabus: [
@@ -43,6 +45,8 @@ const studentModels = [
         description:
           "Become a full-stack developer and build web applications from scratch.",
         completed: false,
+        thumbnail:
+          "https://img.freepik.com/free-photo/learning-education-ideas-insight-intelligence-study-concept_53876-120116.jpg?size=626&ext=jpg&ga=GA1.1.686164011.1685965708&semt=ais",
         enrolledOn: "06/06/2023",
         duration: "16 weeks",
         syllabus: [
@@ -59,7 +63,6 @@ const studentModels = [
               "Optimizing websites for search engines and content creation.",
             completed: false,
           },
-         
         ],
       },
       {
@@ -71,6 +74,8 @@ const studentModels = [
         completed: false,
         enrolledOn: "04/08/2023",
         duration: "12 weeks",
+        thumbnail:
+          "https://img.freepik.com/free-psd/ee-learning-concept-banner-template_23-2148688189.jpg?size=626&ext=jpg&ga=GA1.1.686164011.1685965708&semt=ais",
         syllabus: [
           {
             week: 1,
@@ -99,7 +104,6 @@ const studentModels = [
               "Optimizing websites for search engines and content creation.",
             completed: false,
           },
-         
         ],
       },
     ],

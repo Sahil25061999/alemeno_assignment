@@ -3,11 +3,13 @@ import { useLocation } from "react-router-dom";
 import { Syllabus } from "../schemes/shared";
 
 export const CourseDetails = () => {
-  const [display, setDisplay] = useState(false);
+  const [week, setWeek] = useState(0);
   const { state: course } = useLocation();
-  const handleViewMore = () => {
-    setDisplay((prev) => !prev);
+  const handleViewMore = (week: number) => {
+    setWeek((prev)=> prev === week ? 0 : week);
+    
   };
+  console.log(week)
   return (
     <div className="mb-4 p-4 bg-zinc-900 rounded-3xl" key={course?.id}>
       <h3 className=" text-red-400 text-4xl font-medium">{course?.name}</h3>
@@ -39,24 +41,23 @@ export const CourseDetails = () => {
               <p>Week {item.week}</p>
               <h2 className="text-2xl">{item.topic}</h2>
               <button
-                onClick={handleViewMore}
+                onClick={() => handleViewMore(item.week)}
                 className=" text-blue-700 underline"
               >
                 View More
               </button>
-              {display && (
+              {  week === item.week ? (
                 <div
-                // className="transition-all duration-500"
+                className="transition-all duration-500"
                 // style={{
-                //   height: display ? "auto" : 0,
-                //   transform: display ? "translateY(0)" : "translateY(-50%)",
-                //   opacity: display ? 1 : 0,
-                //   transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                //   height: week === item.week ? "auto" : 0,
+                //   overflow:'hidden',
+                //   transition:week === item.week ? "all 300ms cubic-bezier(0.4, 0, 0.2, 1)":"all",
                 // }}
                 >
                   <p>{item.content}</p>
                 </div>
-              )}
+               ) : null}
             </div>
           ))}
       </div>
