@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import courseReducer from "./courseSlice";
-import searchReducer from "./searchSlice";
-import studentReducer from './studentSlice';
+import courseReducer from "./course-slice";
+import searchReducer from "./search-slice";
+import studentReducer from './student-slice';
 export const store = configureStore({
   reducer: {
     course: courseReducer,

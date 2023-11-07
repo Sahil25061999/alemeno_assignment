@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
 import { useEffect } from "react";
-import { getStudentById, markCourse } from "../redux-toolkit/studentSlice";
+import { getStudentById, markCourse } from "../redux-toolkit/student-slice";
 import { EmptyList } from "../components/index.component";
 import { CourseApplied, Syllabus } from "../lib/types";
 

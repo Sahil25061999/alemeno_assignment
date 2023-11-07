@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchCourses } from "../redux-toolkit/courseSlice";
+import { fetchCourses } from "../redux-toolkit/course-slice";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
 import { EmptyList } from "../components/index.component";
 

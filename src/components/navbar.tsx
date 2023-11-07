@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
-import { setSearchInput } from "../redux-toolkit/searchSlice";
+import { setSearchInput } from "../redux-toolkit/search-slice";
 import { Student } from "../lib/types";
-import { fetchStudents } from "../redux-toolkit/studentSlice";
+import { fetchStudents } from "../redux-toolkit/student-slice";
 
 export const Navbar = () => {
   const searchInput = useSelector(
