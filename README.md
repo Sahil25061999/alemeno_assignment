@@ -2,6 +2,12 @@
 
 This is a simple course listing website built using Vite, React, Typescript, TailwindCss and MirageJs for fake backend.
 
+You can visit the site here: [https://course-list.netlify.app/](https://course-list.netlify.app/)
+
+---
+## Demo
+![site demo](/course_list/src/assets/site-demo.gif)
+---
 In order to run the program,follow the following steps:
 * Clone the repository
 ```
