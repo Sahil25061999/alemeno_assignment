@@ -31,7 +31,7 @@ export const StudentDashboard = () => {
         console.log(e);
       }
     })();
-  }, []);
+  }, [id]);
   return (
     <div>
       <h1 className=" text-4xl font-semibold">Enrolled Courses</h1>

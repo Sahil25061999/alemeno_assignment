@@ -26,6 +26,7 @@ function makeServer({ environment = "development" } = {}) {
     routes() {
       this.namespace = "/api/v1";
       this.get("/courses", (schema) => schema.all("course"));
+      this.get('/students', (schema) => schema.all("student"))
       this.get("/students/:id", (schema, request) => {
         return schema.students.find(request.params.id);
       });
