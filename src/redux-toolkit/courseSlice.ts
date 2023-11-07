@@ -1,7 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Course, Status } from "../schemes/shared";
 
-const initialState = {
+
+interface InitialState{
+  courses:Array<Course | null>;
+  status:Status;
+}
+
+const initialState:InitialState = {
   courses: [],
   status: "idle",
 };

@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCourses } from "../redux-toolkit/courseSlice";
 import { AppDispatch, RootState } from "../redux-toolkit/store";
+import { EmptyList } from "../components/index.component";
+
 export const Home = () => {
-  const courses: Array<{
-    id: string | number;
-    name: string;
-    instructor: string;
-    description: string;
-  }> = useSelector((state: RootState) => state.course.courses);
+  const { courses, status } = useSelector((state: RootState) => state.course);
   const searchInput = useSelector(
     (state: RootState) => state.search.searchInput
   );
@@ -20,8 +17,8 @@ export const Home = () => {
     courses?.length > 0
       ? courses.filter((item) => {
           return (
-            item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-            item.instructor.toLowerCase().includes(searchInput.toLowerCase())
+            item?.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item?.instructor.toLowerCase().includes(searchInput.toLowerCase())
           );
         })
       : [];
@@ -41,13 +38,13 @@ export const Home = () => {
       <div className="course__container py-4">
         {filteredList?.length > 0 ? (
           filteredList.map((course) => (
-            <div className="mb-4 p-4 bg-zinc-900 rounded-lg" key={course?.id}>
+            <div className="mb-4 p-4 bg-zinc-900 rounded-3xl" key={course?.id}>
               <h3 className=" text-red-400 text-2xl font-medium">
                 {course?.name}
               </h3>
-              <p className=" text-xl">{course.instructor}</p>
-              <p>{course.description}</p>
-              <Link state={course} to={`/details/${course.id}`}>
+              <p className=" text-xl">{course?.instructor}</p>
+              <p>{course?.description}</p>
+              <Link state={course} to={`/details/${course?.id}`}>
                 <button className=" px-4 py-2 mt-2 bg-white text-gray-950 rounded-full">
                   View More
                 </button>
@@ -55,9 +52,7 @@ export const Home = () => {
             </div>
           ))
         ) : (
-          <div className="h-[60vh] flex justify-center items-center">
-            <h1 className="text-center">No course or intructor found</h1>
-          </div>
+          <EmptyList status={status} />
         )}
       </div>
     </div>
