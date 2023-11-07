@@ -1,4 +1,4 @@
-import { CourseApplied, Student } from "../redux-toolkit/studentSlice";
+import { CourseApplied, Student } from "../schemes/shared";
 
 export const formattedResp = (studentData:Student)=>{
   return {
