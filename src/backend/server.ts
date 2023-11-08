@@ -1,6 +1,7 @@
 import { createServer, Model } from "miragejs";
 import { courseModels } from "./models/course.constant";
 import { studentModels } from "./models/student.constant";
+import { CourseApplied, Syllabus } from "../lib/types";
 
 function makeServer({ environment = "development" } = {}) {
   const server = createServer({
@@ -20,8 +21,38 @@ function makeServer({ environment = "development" } = {}) {
     routes() {
       this.namespace = "/api/v1";
       this.get("/courses", (schema) => schema.all("course"));
+      this.get('/students', (schema) => schema.all("student"))
       this.get("/students/:id", (schema, request) => {
-        return schema.students.find(request.params.id);
+        return schema.find("student",request.params.id);
+      });
+      this.patch("/students/:id/courseId/:courseId", (schema, request) => {
+        const { id: studentId, courseId } = request.params;
+        const { completed } = JSON.parse(request.requestBody);
+        console.log(completed);
+        const user:any = schema.findBy("student", { id: studentId });
+        user?.update({
+          courseApplied: [
+            ...user.courseApplied.map((course: CourseApplied) =>
+              course.id === courseId
+                ? {
+                    ...course,
+                    completed: completed,
+                    syllabus: [
+                      ...course.syllabus.map((syllabus: Syllabus) => {
+                        syllabus.completed = completed;
+                        return syllabus;
+                      }),
+                    ],
+                  }
+                : course
+            ),
+          ],
+        });
+        // if (course) {
+        //   course.update({ completed });
+        // }
+        return user;
+        // return JSON.stringify(user);
       });
     },
   });

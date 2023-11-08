@@ -1,3 +1,3 @@
-export { Home } from "./Home";
-export { CourseDetails } from "./CourseDetails";
-export { StudentDashboard } from "./StudentDashboard";
+export { Home } from "./home";
+export { CourseDetails } from "./course-details";
+export { StudentDashboard } from "./student-dashboard";
